@@ -1,0 +1,24 @@
+2026-09-22 01:07:46 [main] INFO  com.qudopro.Main - Procesando directorio: Procesando directorio C:\Users\H\Z\Imgs\Anime, Cartoon & Parodies - copia
+2026-09-22 01:07:46 [main] INFO  com.qudopro.files.WindowsFileSystem - Cambiando el nombre a los archivos...
+2026-09-22 01:07:46 [main] INFO  com.qudopro.files.WindowsFileSystem - Estableciendo propiedades a los archivos...
+2026-09-22 01:16:09 [main] INFO  com.qudopro.Main - Procesando directorio: Procesando directorio C:\Users\H\Z\Imgs\Anime, Cartoon & Parodies - copia
+2026-09-22 01:16:09 [main] INFO  com.qudopro.files.WindowsFileSystem - Cambiando el nombre a los archivos...
+2026-09-22 01:16:09 [main] INFO  com.qudopro.files.WindowsFileSystem - Estableciendo propiedades a los archivos...
+2026-09-22 01:18:54 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:19:06 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:20:56 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:21:10 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:21:27 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:21:36 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:21:49 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:21:57 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:22:10 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:22:17 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:22:24 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:22:40 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:22:55 [main] INFO  com.qudopro.files.Propeties - Operacion exitosa:     1 image files updated
+2026-09-22 01:25:02 [main] INFO  com.qudopro.Main - Procesando directorio: Procesando directorio C:\Users\H\Z\Imgs\Anime, Cartoon & Parodies
+2026-09-22 01:25:02 [main] INFO  com.qudopro.files.WindowsFileSystem - Cambiando el nombre a los archivos...
+2026-09-22 01:25:03 [main] INFO  com.qudopro.files.WindowsFileSystem - Estableciendo propiedades a los archivos...
+2026-09-22 01:54:14 [main] INFO  com.qudopro.Main - Procesando directorio: Procesando directorio C:\Users\H\Z\New Images\Feet\1st Edition
+2026-09-22 01:54:14 [main] INFO  com.qudopro.files.WindowsFileSystem - Cambiando el nombre a los archivos...
