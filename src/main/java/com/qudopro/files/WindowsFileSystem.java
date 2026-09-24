@@ -16,6 +16,10 @@ public class WindowsFileSystem {
     private static final Logger logger = LoggerFactory.getLogger(WindowsFileSystem.class);
     private boolean replaceName;
 
+    public WindowsFileSystem(){
+
+    }
+
     public WindowsFileSystem(boolean replaceName){
         this.replaceName = replaceName;
     }
@@ -35,6 +39,7 @@ public class WindowsFileSystem {
                         }
                     }
             );
+            logger.info("Se ha terminado de cambiar el nombre a los ficheros...");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -118,6 +123,27 @@ public class WindowsFileSystem {
         logger.info("Se han terminado de modificar los archivos");
     }
 
+    public void setDefaultProperties(Path directory){
+        logger.info("Estableciendo propiedades a los archivos...");
+
+        if(replaceName)
+            replaceFileNames(directory);
+
+        try {
+            Files.walkFileTree(directory, new SimpleFileVisitor<Path>(){
+                        //Acciones a realizar cuando se encuentre con un archivo en el directorio
+                        @Override
+                        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                            return fileDefaultOperation(file);
+                        }
+                    }
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logger.info("Se han terminado de modificar los archivos");
+    }
+
     private FileVisitResult fileOperation(Path file){
         Map<String, String> tags = new HashMap<>();
         System.out.printf("Modificando archivo: %n%s%n", file.getFileName());
@@ -134,6 +160,31 @@ public class WindowsFileSystem {
             logger.error("{}", e);
         }
 
+        return FileVisitResult.CONTINUE;
+    }
+
+
+    private FileVisitResult fileDefaultOperation(Path file){
+        Map<String, String> tags = new HashMap<>();
+        String parentDirectory = file.getName(file.getNameCount()-2).toString();
+        System.out.printf("Modificando archivo: %n%s/%s%n", parentDirectory, file.getFileName());
+
+        try{
+            if(Integer.parseInt(parentDirectory) >= 1 && Integer.parseInt(parentDirectory) <= 5){
+                String comentario = setComment();
+                String ranking = parentDirectory;
+                String rankingPercentage = setRankingPercentage(ranking);
+                tags.put("Rating", ranking);
+                tags.put("RatingPercent", rankingPercentage);
+                tags.put("XPComment", comentario);
+                Propeties.writeProperties(file, tags);
+            }
+        }catch (NumberFormatException e){
+            logger.error("Favor de validar que el nombre del directorio este en el rango de 1 a 5");
+        } catch(IOException | InterruptedException e){
+            logger.error("No se ha podido modificar el archivo: {}", file);
+            logger.error("{}", e);
+        }
         return FileVisitResult.CONTINUE;
     }
 

@@ -16,23 +16,52 @@ public class Main {
 
 
     public static void main(String[] arsg){
-        while(true){
-            System.out.println("Indique el directorio a recorrer");
-            String directoryInfo = input.nextLine();
+        System.out.println("Indique el directorio a recorrer");
+        String directoryInfo = input.nextLine();
 
-            if(!StringUtils.isBlank(directoryInfo) && Files.isDirectory(Path.of(directoryInfo))){
-                System.out.println("Desea cambiar el nombre de los ficheros? (Y/n)");
-                String option = input.next();
-                boolean replaceNames = false;
-                if(!StringUtils.isBlank(option) && option.equalsIgnoreCase("y"))
-                    replaceNames = true;
+        System.out.println("1) Modificar propiedades de los ficheros?");
+        System.out.println("2) Cambiar UNICAMENTE EL nombre a los ficheros");
+        String option = input.next();
 
-                setProperties(Path.of(directoryInfo), replaceNames);
+        if(!StringUtils.isBlank(option)){
+            switch (option){
+                case "1":
+                    setProperties(directoryInfo);
+                    break;
+                case "2":
+                    onlyChangeNames(directoryInfo);
+                    break;
+            }
+        }
+    }
+
+    private static void onlyChangeNames(String directoryInfo){
+        WindowsFileSystem windowsFileSystem = new WindowsFileSystem();
+        windowsFileSystem.replaceFileNames(Path.of(directoryInfo));
+    }
+
+    /**
+     * Método que permite cambiar las propiedades manualmente
+     * @param directoryInfo
+     */
+    private static void setProperties(String directoryInfo){
+        if(!StringUtils.isBlank(directoryInfo) && Files.isDirectory(Path.of(directoryInfo))){
+            System.out.println("Desea cambiar el nombre de los ficheros ANTES DE CAMBIAR LAS PROPIEDADES? (Y/n)");
+            String option = input.next();
+            boolean replaceNames = false;
+            if(!StringUtils.isBlank(option) && option.equalsIgnoreCase("y"))
+                replaceNames = true;
+
+            System.out.println("Desea agregar las propiedades manualmente? (Y/n)");
+            option = input.next();
+            if(!StringUtils.isBlank(option) && option.equalsIgnoreCase("y")){
+                setPropertiesManually(Path.of(directoryInfo), replaceNames);
                 displayMessage("Procesando directorio " + directoryInfo);
-            }
-            else{
-                break;
-            }
+            }else if((!StringUtils.isBlank(option) && option.equalsIgnoreCase("n")))
+                setDefaultProperties(Path.of(directoryInfo), replaceNames);
+            else
+                System.out.println("Modo no especificado");
+
         }
     }
 
@@ -49,9 +78,14 @@ public class Main {
      * @param directoryInfo
      * @param
      */
-    private static void setProperties(Path directoryInfo, boolean replaceNames){
+    private static void setPropertiesManually(Path directoryInfo, boolean replaceNames){
         WindowsFileSystem windowsFileSystem = new WindowsFileSystem(replaceNames);
         windowsFileSystem.setPropertiesToElements(directoryInfo);
+    }
+
+    private static void setDefaultProperties(Path directoryInfo, boolean replaceNames){
+        WindowsFileSystem windowsFileSystem = new WindowsFileSystem(replaceNames);
+        windowsFileSystem.setDefaultProperties(directoryInfo);
     }
 
     /**
